@@ -1,12 +1,25 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      dKomp
     </ion-title>
+    <ion-buttons end>
+      <button ion-button clear (click)="authWithSpotify()" *ngIf="!loggedIn">Login</button>
+      <button ion-button clear (click)="logout()" *ngIf="loggedIn">Logout</button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <button ion-button full (click)="authWithSpotify()">Login</button>
-  {{ result | json }}
+
+  <div *ngIf="!loggedIn" text-center padding>Please Login to load your Playlists!</div>
+  <ion-list>
+    <button ion-item *ngFor="let item of data" (click)="openWordCloud(item)">
+      <ion-avatar item-start *ngIf = "item.images.length > 0">
+        <img [src]="item.images[0].url">
+      </ion-avatar>
+      {{ item.name }}
+      <p>Tracks: {{ item.tracks.total }}</p>
+    </button>
+  </ion-list>
 </ion-content>
