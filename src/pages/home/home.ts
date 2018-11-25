@@ -11,11 +11,15 @@ declare var cordova: any;
 })
 
 export class HomePage {
+  // Basic variables and arrays
   result = {};
   spotifyApi = new SpotifyWebApi();
   loading: Loading;
   loggedIn = false;
-  data = [];
+  trackData = [];
+  artistData = [];
+  genreData = [];
+  userData = [];
 
   constructor(public navCtrl: NavController, private storage: Storage, private plt: Platform, private loadingCtrl: LoadingController) {
     this.plt.ready().then(() => {
@@ -31,7 +35,7 @@ export class HomePage {
     const config = {
       clientId: "72f859bddc94420ca127bb729336d56d",
       redirectUrl: "devdacticspotify://callback",
-      scopes: ["streaming", "playlist-read-private", "user-read-email", "user-read-private"],
+      scopes: ["streaming", "playlist-read-private", "user-read-email", "user-read-private", "user-top-read"],
       tokenExchangeUrl: "https://dkomp.herokuapp.com/exchange",
       tokenRefreshUrl: "https://dkomp.herokuapp.com/refresh",
     };
@@ -57,35 +61,71 @@ export class HomePage {
       });
   }
 
+  /*  
+  * Retrieve user data through Spotify endpoints:
+  * Top Tracks
+  * Top Artists
+  * Recommended Genres 
+  */
+
   getUserData() {
     this.loading = this.loadingCtrl.create({
       content: 'Loading Data...'
     });
     this.loading.present();
+    this.getTopTracks();
+    this.getTopArtists();
+    this.getGenres();
+  }
 
-    this.spotifyApi.getUserPlaylists()
+  /*  
+  * Top Tracks
+  */
+  getTopTracks() {
+    this.spotifyApi.getMyTopTracks()
       .then(data => {
-        this.result = { data : data };
         if (this.loading) {
           this.loading.dismiss();
         }
-        this.data = data.items;
-      }, err => {
-        if (this.loading) {
-          this.loading.dismiss();
-        }
-      });
+        this.trackData = data.items;
+        console.log(this.trackData);
+      }, err => {});
+  }
+
+  /*  
+  * Top Artists
+  */
+  getTopArtists() {
+    this.spotifyApi.getMyTopArtists()
+      .then(data => {
+        this.artistData = data.items;
+        console.log(this.artistData);
+      }, err => {});
+  }
+
+  /*  
+  * Recommended Genres
+  */
+  getGenres() {
+    this.spotifyApi.getAvailableGenreSeeds()
+      .then(data => {
+        this.genreData = data.genres;
+        console.log(this.genreData);
+      }, err => {});
   }
 
   openWordCloud(item) {
-    this.navCtrl.push('WordCloudPage', { playlist: item });
+    this.navCtrl.push('WordCloudPage', { wordcloud : item });
   }
 
   logout() {
     cordova.plugins.spotifyAuth.forget();
 
     this.loggedIn = false;
-    this.data = [];
+    this.trackData = [];
+    this.artistData = [];
+    this.genreData = [];
+    this.userData = [];
     this.storage.set('logged_in', false);
   }
 

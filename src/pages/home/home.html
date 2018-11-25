@@ -12,14 +12,19 @@
 
 <ion-content padding>
 
-  <div *ngIf="!loggedIn" text-center padding>Please Login to load your Playlists!</div>
+  <div *ngIf="!loggedIn" text-center padding>Please Login to load your WordCloud</div>
   <ion-list>
-    <button ion-item *ngFor="let item of data" (click)="openWordCloud(item)">
-      <ion-avatar item-start *ngIf = "item.images.length > 0">
-        <img [src]="item.images[0].url">
-      </ion-avatar>
-      {{ item.name }}
-      <p>Tracks: {{ item.tracks.total }}</p>
-    </button>
+    <ul>
+      <!-- Loop through each array of data and see what it contains  -->
+      <li *ngFor="let item of trackData">
+        <p>{{ item.name }}</p>
+      </li>
+      <li *ngFor="let item of artistData">
+        <p>{{ item.name }}</p>
+      </li>
+      <li *ngFor="let item of genreData"> 
+        <p>{{ item }}</p>
+      </li>
+    </ul>
   </ion-list>
 </ion-content>
