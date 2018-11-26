@@ -13,7 +13,9 @@
   <ion-content padding>
   
     <div *ngIf="!loggedIn" text-center padding>Please Login to load your WordCloud</div>
-    <canvas id="canvas" class="canvas"></canvas>
+    <!-- <div class ="span12" id="canvas-container"> -->
+    <canvas width="700" height="1000" style="width: 350px; height: 500px" id="canvas" class="canvas"></canvas>
+    <!-- </div> -->
     <!-- <ion-list>
       <ul>
         Loop through each array of data and see what it contains 

@@ -1,3 +1,19 @@
 page-home {
-
+    #canvas {
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+    #canvas-container {
+        overflow-x: auto;
+        overflow-y: visible;
+        position: relative;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+      @media (min-width: 1200px) {
+        .span12 {
+            width: 1170px;
+        }
+      }
 }

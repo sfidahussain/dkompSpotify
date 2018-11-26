@@ -86,7 +86,7 @@ export class HomePage {
   * Top Tracks
   */
   getTopTracks() {
-    this.spotifyApi.getMyTopTracks()
+    this.spotifyApi.getMyTopTracks({time_range: "short_term"})
       .then(data => {
         this.trackData = data.items;
         console.log(this.trackData);
@@ -98,7 +98,7 @@ export class HomePage {
   * Top Artists
   */
   getTopArtists() {
-    this.spotifyApi.getMyTopArtists()
+    this.spotifyApi.getMyTopArtists({time_range: "short_term"})
       .then(data => {
         this.artistData = data.items;
         console.log(this.artistData);
@@ -117,9 +117,50 @@ export class HomePage {
         }
         this.genreData = data.genres;
         console.log(this.genreData);
-        this.list = [['foo', 25], ['bar', 36]];
+        this.list = [
+        ];
+        // for (let item of this.artistData) {
+        //   for (var i = 0; i < 3; i++) {
+        //     this.list.push([item.genres, 20]);
+        //   }
+        // }
+        var size = 30;
+        for (let item of this.artistData) {
+          this.list.push([item.name, size ]);
+          size = size - 5;
+        }
+        
+        for (let item of this.trackData) {
+          this.list.push([item.name, item.popularity / 3]);
+        }
         console.log(this.list);
-        this.wordcloud = WordCloud(document.getElementById("canvas"), { list: this.list } );
+        // Our canvas must cover full height of screen
+        // regardless of the resolution
+        var height = window.innerHeight;
+        
+        // So we need to calculate the proper scaled width
+        // that should work well with every resolution
+        var canvas = document.getElementById("canvas");
+        // var ratio = canvas.offsetWidth/canvas.offsetHeight;
+        // var width = height * ratio;
+        
+        // canvas.style.width = width+'px';
+        // canvas.style.height = height+'px';
+        
+        this.wordcloud = WordCloud(document.getElementById("canvas"), 
+        { 
+          list: this.list, 
+            // gridSize: Math.round(16 * canvas.offsetWidth / 1024),
+            weightFactor: 1.5,
+            fontFamily: 'Times, serif',
+            color: function (word, weight) {
+              return (weight === 12) ? '#f02222' : '#c09292';
+            },
+            rotateRatio: 0.5,
+            minRotation: 80.1,
+            maxRotation: 80.1,
+            backgroundColor: '#ffe0e0'
+        });
       }, err => {});
   }
 
@@ -129,7 +170,6 @@ export class HomePage {
 
   logout() {
     cordova.plugins.spotifyAuth.forget();
-
     this.loggedIn = false;
     this.trackData = [];
     this.artistData = [];
