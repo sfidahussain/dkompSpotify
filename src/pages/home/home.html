@@ -1,30 +1,31 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      dKomp
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button clear (click)="authWithSpotify()" *ngIf="!loggedIn">Login</button>
-      <button ion-button clear (click)="logout()" *ngIf="loggedIn">Logout</button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
-
-<ion-content padding>
-
-  <div *ngIf="!loggedIn" text-center padding>Please Login to load your WordCloud</div>
-  <ion-list>
-    <ul>
-      <!-- Loop through each array of data and see what it contains  -->
-      <li *ngFor="let item of trackData">
-        <p>{{ item.name }}</p>
-      </li>
-      <li *ngFor="let item of artistData">
-        <p>{{ item.name }}</p>
-      </li>
-      <li *ngFor="let item of genreData"> 
-        <p>{{ item }}</p>
-      </li>
-    </ul>
-  </ion-list>
-</ion-content>
+    <ion-navbar>
+      <ion-title>
+        dKomp
+      </ion-title>
+      <ion-buttons end>
+        <button ion-button clear (click)="authWithSpotify()" *ngIf="!loggedIn">Login</button>
+        <button ion-button clear (click)="logout()" *ngIf="loggedIn">Logout</button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+  
+    <div *ngIf="!loggedIn" text-center padding>Please Login to load your WordCloud</div>
+    <canvas id="canvas" class="canvas"></canvas>
+    <!-- <ion-list>
+      <ul>
+        Loop through each array of data and see what it contains 
+        <li *ngFor="let item of trackData">
+          <p>{{ item.name }}</p>
+        </li>
+        <li *ngFor="let item of artistData">
+          <p>{{ item.name }}</p>
+        </li>
+        <li *ngFor="let item of genreData"> 
+          <p>{{ item }}</p>
+        </li>
+      </ul>
+    </ion-list> -->
+  </ion-content>
