@@ -9,7 +9,9 @@ import { HomePage } from '../pages/home/home';
 import { Media } from '@ionic-native/media';
 import { SocialSharing } from '@ionic-native/social-sharing';
  
+import { File } from '@ionic-native/file';
 import { IonicStorageModule } from '@ionic/storage';
+import { Instagram } from '@ionic-native/instagram';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { IonicStorageModule } from '@ionic/storage';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Media,
-    SocialSharing
+    SocialSharing,
+    Instagram,
+    File
   ]
 })
 export class AppModule {}

@@ -3,6 +3,8 @@ import { NavController, Platform, LoadingController, Loading } from 'ionic-angul
 import SpotifyWebApi from 'spotify-web-api-js';
 import { Storage } from '@ionic/storage';
 import * as WordCloud from 'wordcloud';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { Instagram } from '@ionic-native/instagram';
 
 declare var cordova: any;
 
@@ -24,9 +26,8 @@ export class HomePage {
   userData = [];
   wordcloud = null;
 
-  constructor(public navCtrl: NavController, private storage: Storage, private plt: Platform, private loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, private instagram: Instagram, private storage: Storage, private plt: Platform, private loadingCtrl: LoadingController, public socialSharing: SocialSharing) {
     this.plt.ready().then(() => {
-      // this.wordcloud = WordCloud(document.getElementById("canvas"), { list: this.list } );
       this.storage.get('logged_in').then(res => {
         if (res) {
           this.authWithSpotify(true);
@@ -86,24 +87,24 @@ export class HomePage {
   * Top Tracks
   */
   getTopTracks() {
-    this.spotifyApi.getMyTopTracks({time_range: "short_term"})
+    this.spotifyApi.getMyTopTracks({ time_range: "short_term" })
       .then(data => {
         this.trackData = data.items;
         console.log(this.trackData);
         this.getTopArtists();
-      }, err => {});
+      }, err => { });
   }
 
   /*  
   * Top Artists
   */
   getTopArtists() {
-    this.spotifyApi.getMyTopArtists({time_range: "short_term"})
+    this.spotifyApi.getMyTopArtists({ time_range: "short_term" })
       .then(data => {
         this.artistData = data.items;
         console.log(this.artistData);
         this.getGenres();
-      }, err => {});
+      }, err => { });
   }
 
   /*  
@@ -126,10 +127,10 @@ export class HomePage {
         // }
         var size = 30;
         for (let item of this.artistData) {
-          this.list.push([item.name, size ]);
+          this.list.push([item.name, size]);
           size = size - 5;
         }
-        
+
         for (let item of this.trackData) {
           this.list.push([item.name, item.popularity / 3]);
         }
@@ -137,19 +138,19 @@ export class HomePage {
         // Our canvas must cover full height of screen
         // regardless of the resolution
         var height = window.innerHeight;
-        
+
         // So we need to calculate the proper scaled width
         // that should work well with every resolution
         var canvas = document.getElementById("canvas");
         // var ratio = canvas.offsetWidth/canvas.offsetHeight;
         // var width = height * ratio;
-        
+
         // canvas.style.width = width+'px';
         // canvas.style.height = height+'px';
-        
-        this.wordcloud = WordCloud(document.getElementById("canvas"), 
-        { 
-          list: this.list, 
+
+        this.wordcloud = WordCloud(document.getElementById("canvas"),
+          {
+            list: this.list,
             // gridSize: Math.round(16 * canvas.offsetWidth / 1024),
             weightFactor: 1.5,
             fontFamily: 'Times, serif',
@@ -160,12 +161,18 @@ export class HomePage {
             minRotation: 80.1,
             maxRotation: 80.1,
             backgroundColor: '#ffe0e0'
-        });
-      }, err => {});
+          });
+      }, err => { });
   }
 
   openWordCloud(item) {
-    this.navCtrl.push('WordCloudPage', { wordcloud : item });
+    this.navCtrl.push('WordCloudPage', { wordcloud: item });
+  }
+
+  saveCanvasImage() {
+    var canvas = document.querySelector('canvas');
+    var dataURL = canvas.toDataURL();
+    this.socialSharing.share("", null, dataURL, null);
   }
 
   logout() {
@@ -177,7 +184,7 @@ export class HomePage {
     this.userData = [];
     this.storage.set('logged_in', false);
     this.list = [];
-    this.wordcloud = WordCloud(document.getElementById("canvas"), { list: this.list } );
+    this.wordcloud = WordCloud(document.getElementById("canvas"), { list: this.list });
   }
 
 }

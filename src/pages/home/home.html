@@ -1,22 +1,22 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title>
-        dKomp
-      </ion-title>
-      <ion-buttons end>
-        <button ion-button clear (click)="authWithSpotify()" *ngIf="!loggedIn">Login</button>
-        <button ion-button clear (click)="logout()" *ngIf="loggedIn">Logout</button>
-      </ion-buttons>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-  
-    <div *ngIf="!loggedIn" text-center padding>Please Login to load your WordCloud</div>
-    <!-- <div class ="span12" id="canvas-container"> -->
-    <canvas width="700" height="1000" style="width: 350px; height: 500px" id="canvas" class="canvas"></canvas>
-    <!-- </div> -->
-    <!-- <ion-list>
+  <ion-navbar>
+    <ion-title>
+      dKomp
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button clear (click)="authWithSpotify()" *ngIf="!loggedIn">Login</button>
+      <button ion-button clear (click)="logout()" *ngIf="loggedIn">Logout</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div *ngIf="!loggedIn" text-center padding>Please Login to load your WordCloud</div>
+  <!-- <div class ="span12" id="canvas-container"> -->
+  <canvas width="700" height="1000" style="width: 350px; height: 500px" id="canvas" class="canvas"></canvas>
+  <!-- </div> -->
+  <!-- <ion-list>
       <ul>
         Loop through each array of data and see what it contains 
         <li *ngFor="let item of trackData">
@@ -30,4 +30,18 @@
         </li>
       </ul>
     </ion-list> -->
-  </ion-content>
+    <div *ngIf="loggedIn" text-center>
+    <button large ion-button clear color="danger" icon-only>
+      <ion-icon name="radio-button-on"></ion-icon>
+    </button>
+    <button large ion-button clear color="primary" icon-only>
+      <ion-icon name="radio-button-on"></ion-icon>
+    </button>
+    <button large ion-button clear color="dark" icon-only>
+      <ion-icon name="radio-button-on"></ion-icon>
+    </button>
+    <button ion-button clear large color="dark" outline (click)="saveCanvasImage()" icon-start>
+      <ion-icon name="share"></ion-icon>
+    </button>
+  </div>
+</ion-content>
