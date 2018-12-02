@@ -13,35 +13,21 @@
 <ion-content padding>
 
   <div *ngIf="!loggedIn" text-center padding>Please Login to load your WordCloud</div>
-  <!-- <div class ="span12" id="canvas-container"> -->
-  <canvas width="700" height="1000" style="width: 350px; height: 500px" id="canvas" class="canvas"></canvas>
-  <!-- </div> -->
-  <!-- <ion-list>
-      <ul>
-        Loop through each array of data and see what it contains 
-        <li *ngFor="let item of trackData">
-          <p>{{ item.name }}</p>
-        </li>
-        <li *ngFor="let item of artistData">
-          <p>{{ item.name }}</p>
-        </li>
-        <li *ngFor="let item of genreData"> 
-          <p>{{ item }}</p>
-        </li>
-      </ul>
-    </ion-list> -->
-    <div *ngIf="loggedIn" text-center>
-    <button large ion-button clear color="danger" icon-only>
+  <canvas width="700" height="1000" style="width: 350px; height: 500px" id="canvas" class="canvas" ></canvas>
+  
+  <div *ngIf="loggedIn" text-center>
+    <button (click)="changeTheme('pink')" large ion-button clear color="danger" icon-only>
       <ion-icon name="radio-button-on"></ion-icon>
     </button>
-    <button large ion-button clear color="primary" icon-only>
+    <button (click)="changeTheme('handwritten')" large ion-button clear color="primary" icon-only>
       <ion-icon name="radio-button-on"></ion-icon>
     </button>
-    <button large ion-button clear color="dark" icon-only>
+    <button (click)="changeTheme('dark')" large ion-button clear color="dark" icon-only>
       <ion-icon name="radio-button-on"></ion-icon>
     </button>
-    <button ion-button clear large color="dark" outline (click)="saveCanvasImage()" icon-start>
+    <button (click)="saveCanvasImage()" ion-button clear large color="dark" outline icon-start>
       <ion-icon name="share"></ion-icon>
     </button>
   </div>
+
 </ion-content>

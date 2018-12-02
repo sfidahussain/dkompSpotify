@@ -11,7 +11,8 @@ import { SocialSharing } from '@ionic-native/social-sharing';
  
 import { File } from '@ionic-native/file';
 import { IonicStorageModule } from '@ionic/storage';
-import { Instagram } from '@ionic-native/instagram';
+import { SpotifyDataProvider } from '../providers/spotify-data/spotify-data';
+import { WordCloudProvider } from '../providers/word-cloud/word-cloud';
 
 @NgModule({
   declarations: [
@@ -34,8 +35,9 @@ import { Instagram } from '@ionic-native/instagram';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Media,
     SocialSharing,
-    Instagram,
-    File
+    File,
+    SpotifyDataProvider,
+    WordCloudProvider
   ]
 })
 export class AppModule {}
