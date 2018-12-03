@@ -24,13 +24,16 @@ export class WordCloudProvider {
     {
       list: this.list,
       weightFactor: 1.5,
-      fontFamily: 'Sedgwick Ave',
-      color: '#77a2b4',
+      fontFamily: 'Lato, sans-serif',
+      color: function() {
+        return (['#fffffc', '#00e6f7'])[Math.floor(Math.random() * 2)]
+      },
       rotateRatio: 0.5,
       minRotation: 80.1,
       maxRotation: 80.1,
-      backgroundColor: '#f6e9d5'
+      backgroundColor: '#1dc2f6'
     });
+    console.log('pink' + this.list);
   }
 
   pinkTheme() {
@@ -38,12 +41,14 @@ export class WordCloudProvider {
     {
       list: this.list,
       weightFactor: 1.5,
-      fontFamily: 'Finger Paint',
-      color: '#eb048c',
+      fontFamily: 'Lato, sans-serif',
+      color: function() {
+        return (['#fffffc', '#00e6f7'])[Math.floor(Math.random() * 2)]
+      },
       rotateRatio: 0.5,
       minRotation: 80.1,
       maxRotation: 80.1,
-      backgroundColor: '#fff300'
+      backgroundColor: '#1dc2f6'
     });
     console.log('pink' + this.list);
   }
@@ -53,12 +58,14 @@ export class WordCloudProvider {
     {
       list: this.list,
       weightFactor: 1.5,
-      fontFamily: 'Sedgwick Ave',
-      color: '#77a2b4',
+      fontFamily: 'Oswald, sans-serif',
+      color: function() {
+        return (['#ef4a30', '#ffca2e', '#dde4db', '#255b6e', '#feccb2'])[Math.floor(Math.random() * 3)]
+      },
       rotateRatio: 0.5,
       minRotation: 80.1,
       maxRotation: 80.1,
-      backgroundColor: '#f6e9d5'
+      backgroundColor: '#fffaf8'
     });
     console.log('handwritten' + this.list);
   }
@@ -68,12 +75,12 @@ export class WordCloudProvider {
     {
       list: this.list,
       weightFactor: 1.5,
-      fontFamily: 'Megrim',
-      color: '#1aa723',
+      fontFamily: 'Tropical Asian, sans-serif',
+      color: '#fcfcfc',
       rotateRatio: 0.5,
       minRotation: 80.1,
       maxRotation: 80.1,
-      backgroundColor: '#000000'
+      backgroundColor: '#131313'
     });
     console.log('dark' + this.list);
   }

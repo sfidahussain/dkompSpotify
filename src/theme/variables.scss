@@ -35,7 +35,7 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #488aff,
-  secondary:  #32db64,
+  secondary:  #f8d466,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222
@@ -46,7 +46,8 @@ $colors: (
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
-
+$toolbar-background: #fffaf8;
+$toolbar-text-color: #131313;
 
 
 // App Material Design Variables

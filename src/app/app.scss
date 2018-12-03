@@ -14,10 +14,23 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+.bg-style {
+    background: #f5f0eb;
+}
 
 @font-face {
     font-family: 'Sedgwick Ave';
     src: url('../assets/fonts/SedgwickAve.woff2');
+}
+
+@font-face {
+    font-family: 'Tropical Asian';
+    src: url('../assets/fonts/TropicalAsianDEMO-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Lato';
+    src: url('../assets/fonts/lato.woff2');
 }
 
 @font-face {
@@ -28,4 +41,14 @@
 @font-face {
     font-family: 'Finger Paint';
     src: url('../assets/fonts/fingerPaint.woff2');
+}
+
+@font-face {
+    font-family: 'Permanent Marker';
+    src: url('../assets/fonts/PermanentMarker.woff2');
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('../assets/fonts/oswald.woff2');
 }
