@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import SpotifyWebApi from 'spotify-web-api-js';
+import { HttpClient } from '@angular/common/http';
 import { WordCloudProvider } from '../../providers/word-cloud/word-cloud';
 
 /*
@@ -10,13 +11,20 @@ import { WordCloudProvider } from '../../providers/word-cloud/word-cloud';
 */
 @Injectable()
 export class SpotifyDataProvider {
+  baseURL = "https://groceries-server-demo-sanaa.herokuapp.com";
+
+  item = {
+    userName: "", 
+    keywords: []
+  };
+
   trackData = [];
   artistData = [];
   userData = [];
   list = [['foo', 25], ['bar', 36]];
   spotifyApi = new SpotifyWebApi();
 
-  constructor(public wordCloudService: WordCloudProvider) {
+  constructor(public wordCloudService: WordCloudProvider, public http: HttpClient) {
     console.log('Hello SpotifyDataProvider Provider');
   }
 
@@ -59,8 +67,23 @@ export class SpotifyDataProvider {
 
     console.log(this.list);
 
+    this.spotifyApi.getMe()
+    .then(data => {
+      this.item.userName = data.display_name;
+    });
+
+    this.item.keywords = this.list;
+
+    this.addItem(this.item);
+
     this.wordCloudService.generateWordCloud(this.list);
 
+  }
+
+  addItem(item) {
+    this.http.post(this.baseURL + "/api/dKomp/", item).subscribe(res => {
+      console.log('adding item from db');
+    });
   }
 
 }

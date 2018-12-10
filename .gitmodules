@@ -1,0 +1,3 @@
+[submodule "dKomp-server"]
+	path = dKomp-server
+	url = https://github.com/sfidahussain/dKompServer.git
