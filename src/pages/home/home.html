@@ -14,12 +14,10 @@
 
   <!-- <div *ngIf="!loggedIn" text-center padding>Please Login to load your WordCloud</div> -->
   <div *ngIf="!loggedIn" text-center class="center">
-    <button full ion-button ion-button round color="secondary" (click)="authWithSpotify()" *ngIf="!loggedIn">Login</button>
+    <button full ion-button ion-button round color="secondary" (click)="authWithSpotify()">Login</button>
   </div>
   
-  <ion-scroll zooming="true" direction="xy" min-zoom="-2" class="ionic-scroll" delegate-handle="image">
-    <canvas *ngIf="loggedIn" width="700" height="1000" style="width: 350px; height: 500px" id="canvas" class="canvas"></canvas>
-  </ion-scroll>
+  <canvas *ngIf="loggedIn" width="700" height="1000" style="width: 350px; height: 500px" id="canvas" class="canvas"></canvas>
 
   <div class="buttons" *ngIf="loggedIn" text-center>
     <button (click)="changeTheme('pink')" large ion-button clear color="primary" icon-only>

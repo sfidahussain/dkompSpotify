@@ -11,7 +11,7 @@ import { WordCloudProvider } from '../../providers/word-cloud/word-cloud';
 */
 @Injectable()
 export class SpotifyDataProvider {
-  baseURL = "https://groceries-server-demo-sanaa.herokuapp.com";
+  baseURL = "https://dkomp-server.herokuapp.com";
 
   item = {
     userName: "", 
@@ -70,13 +70,10 @@ export class SpotifyDataProvider {
     this.spotifyApi.getMe()
     .then(data => {
       this.item.userName = data.display_name;
-    });
-
-    this.item.keywords = this.list;
-
-    this.addItem(this.item);
-
-    this.wordCloudService.generateWordCloud(this.list);
+      this.item.keywords = this.list;
+      this.addItem(this.item);
+      this.wordCloudService.generateWordCloud(this.list);
+    }, err => {});
 
   }
 
