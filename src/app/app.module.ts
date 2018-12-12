@@ -24,7 +24,7 @@ import { WordCloudProvider } from '../providers/word-cloud/word-cloud';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [

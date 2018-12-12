@@ -1,7 +1,7 @@
 // import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as WordCloud from 'wordcloud';
-
+ 
 /*
   Generated class for the WordCloudProvider provider.
 
@@ -84,5 +84,6 @@ export class WordCloudProvider {
     });
     console.log('dark' + this.list);
   }
+  
 
 }
