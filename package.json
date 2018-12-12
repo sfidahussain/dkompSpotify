@@ -8,7 +8,8 @@
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint"
+    "lint": "ionic-app-scripts lint",
+    "heroku-postbuild": "ng build --aot --prod"
   },
   "dependencies": {
     "@angular/common": "5.2.11",
@@ -58,7 +59,9 @@
     "sw-toolbox": "3.6.0",
     "types": "^0.1.1",
     "wordcloud": "^1.1.0",
-    "zone.js": "0.8.26"
+    "zone.js": "0.8.26",
+    "@ionic/app-scripts": "3.2.0",
+    "typescript": "~2.6.2"
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.2.0",
