@@ -8,6 +8,22 @@ Students in high school and college will find Decompose as an easy way to share 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
+A url to the running web application
+
+https://tranquil-wave-39994.herokuapp.com/
+
+Used Heroku servers:
+Spotify OAuth Server: https://dkomp.herokuapp.com/
+
+dKomp DB Server: https://dkomp-server.herokuapp.com/api/dKomp
+
+https://tranquil-wave-39994.herokuapp.com/
+
+That is how far I got into deploying it on Heroku. Since the cordova plugin is native: it cannot be fully implemented on a browser. However, during my walkthrough I did explain how it worked on a phone. 
+
+If you use an emulator it works fine. 
+
+
 ## Authors
 
 * **Sanaa Fidahussain** - 
