@@ -8,8 +8,7 @@
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "lint": "ionic-app-scripts lint",
-    "heroku-postbuild": "ng build --aot --prod"
+    "lint": "ionic-app-scripts lint"
   },
   "dependencies": {
     "@angular/common": "5.2.11",
